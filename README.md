@@ -1,1 +1,1 @@
-# Multi Vendor E Commerce app with Laravel Framework
+# Multi-vendor E-commerce app with Laravel Framework”
