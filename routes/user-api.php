@@ -15,11 +15,6 @@ Route::get('products_preferred', [ShoppingController::class, 'get_products_prefe
 
 Route::get('product/{id}', [ShoppingController::class, 'get_product']);
 
-// Route::prefix('categories/{id}')->group(function ($id) {
-//     Route::get('products', [ShoppingController::class, 'category_products']);
-//     Route::get('vendors', [ShoppingController::class, 'category_vendors']);
-// });
-
 Route::prefix('vendors/{id}')->group(function () {
     Route::get('/', [ShoppingController::class, 'vendor_show']);
     Route::get('products', [ShoppingController::class, 'vendor_products']);
