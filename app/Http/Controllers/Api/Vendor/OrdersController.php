@@ -3,63 +3,43 @@
 namespace App\Http\Controllers\Api\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Vendor\UpdateOrderRequest;
+use App\Models\Order;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function index()
     {
-        //
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        return response()->json(['data' => $vendor->orders()->get()->toArray()], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        return response()->json(['data' => $vendor->orders()->where('id', $id)->get()->toArray()], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(UpdateOrderRequest $request, $id)
     {
-        //
-    }
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if ($vendor) {
+            $order = Order::find($id)->update($request->all());
+            dd($order);
+        }
     }
 }

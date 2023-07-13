@@ -3,63 +3,92 @@
 namespace App\Http\Controllers\Api\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Vendor\StoreProductRequest;
+use App\Http\Requests\Vendor\UpdateProductRequest;
+use App\Models\Product;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function index()
     {
-        //
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        return $vendor->products()->get()->toArray();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StoreProductRequest $request)
     {
-        //
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        $data = $request->all();
+        $data['vendor_id'] = $vendor->id;
+
+        $product = Product::create($data);
+
+        return response()->json([
+            'data' => $product->toArray()
+        ], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        $product = Product::where(['vendor_id' => $vendor->id, 'id' => $id])->get();
+
+        return response()->json([
+            'data' => $product->toArray()
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
-        //
+        $user = Auth::user();
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        $product = Product::where(['vendor_id' => $vendor->id, 'id' => $id]);
+
+        if ($product) {
+            $product->update($request->all());
+            return response()->json([
+                'data' => $product->get(),
+                'message' => 'product updated successfully'
+            ], 200);
+        }
+
+        return response()->json([
+            'data' => [],
+            'message' => 'product not found',
+        ], 404);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product) {
+            if ($product->delete()) {
+                return response()->json([
+                    'data' => [],
+                    'message' => 'product deleted successfully',
+                ], 404);
+            }
+        }
+
+        return response()->json([
+            'data' => [],
+            'message' => 'product not found',
+        ], 404);
     }
 }

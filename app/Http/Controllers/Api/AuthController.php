@@ -40,9 +40,6 @@ class AuthController extends Controller
         $user = Auth::user();
 
         $token = $user->createToken("API TOKEN")->plainTextToken;
-        $expiration = now()->addMinutes(1);
-        $user->api_token_expires_at = $expiration;
-        $user->save();
 
         return response()->json([
             'status' => true,
