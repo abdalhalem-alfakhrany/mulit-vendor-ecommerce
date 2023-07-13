@@ -16,16 +16,14 @@ return new class extends Migration
 
             $table->string('name');
 
+            $table->foreignId('user_id')->constrained();
+
             $table->timestamps();
         });
 
-        Schema::create('shopping_list_product', function (Blueprint $table) {
-            $table->id();
-
+        Schema::create('product_shopping_list', function (Blueprint $table) {
             $table->foreignId('shopping_list_id')->constrained();
             $table->foreignId('product_id')->constrained();
-
-            $table->timestamps();
         });
     }
 
@@ -34,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shopping_list_product');
+        Schema::dropIfExists('product_shopping_list');
         Schema::dropIfExists('shopping_lists');
     }
 };

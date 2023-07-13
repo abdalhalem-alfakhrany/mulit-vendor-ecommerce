@@ -15,21 +15,18 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
-            $table->text('discription')->nullable();
+            $table->text('description')->nullable();
             $table->decimal('price');
 
-            $table->foreignId('category_id')->constrained();
             $table->foreignId('vendor_id')->constrained();
-            $table->foreignId('image_id')->constrained();
+            $table->foreignId('image_id')->nullable()->constrained();
 
             $table->timestamps();
         });
 
-        Schema::create('products_tags', function (Blueprint $table) {
-
-            $table->foreignId('product_id')->constrained();
+        Schema::create('product_tag', function (Blueprint $table) {
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('tag_id')->constrained();
-
         });
     }
 

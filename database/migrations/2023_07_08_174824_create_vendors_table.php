@@ -16,16 +16,13 @@ return new class extends Migration
 
             $table->string('name');
             $table->text('description')->nullable();
-
-            $table->foreignId('image_id')->constrained();
+            
+            $table->foreignId('user_id')->unique()->constrained();
+            $table->foreignId('image_id')->nullable()->constrained();
 
             $table->timestamps();
         });
 
-        Schema::create('vendor_product', function (Blueprint $table) {
-            $table->foreignId('vendor_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-        });
     }
 
     /**
@@ -33,7 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vendor_product');
         Schema::dropIfExists('vendors');
     }
 };

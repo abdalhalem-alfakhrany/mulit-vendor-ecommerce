@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->foreignId('vendor_id')->constrained();
             $table->foreignId('shopping_list_id')->constrained();
-            $table->boolean('done');
+            $table->enum('status', ['done', 'rejected', 'accepted', 'pended'])->default('pended');
 
             $table->timestamps();
         });

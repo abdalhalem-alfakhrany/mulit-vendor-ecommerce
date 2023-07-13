@@ -20,11 +20,9 @@ return new class extends Migration
             $table->string('password');
 
             $table->foreignId('image_id')->nullable()->constrained();
-
-            $table->date('created_at')->default(now());
-            $table->date('updated_at')->default(now());
-
-            // $table->timestamps()->date_format('');
+            
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
