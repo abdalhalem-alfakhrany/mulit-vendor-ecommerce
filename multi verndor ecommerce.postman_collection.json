@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "1217c7c2-1e9a-4832-986a-ef816baa552f",
+		"name": "multi verndor ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23984317"
+	},
+	"item": [
+		{
+			"name": "UserApp",
+			"item": [
+				{
+					"name": "Api",
+					"item": [
+						{
+							"name": "Auth",
+							"item": [
+								{
+									"name": "login",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"content-type": true
+										}
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"abdalhalem@app.com\",\n    \"password\": \"password\"\n}"
+										},
+										"url": {
+											"raw": "{{api}}auth/login",
+											"host": [
+												"{{api}}auth"
+											],
+											"path": [
+												"login"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "register",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"first_name\": \"abdalhalem\",\n    \"last_name\": \"alfakhrany\",\n    \"email\": \"abdalhalem1@app.com\",\n    \"password\": \"password\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api}}auth/register",
+											"host": [
+												"{{api}}auth"
+											],
+											"path": [
+												"register"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Vendor",
+							"item": [
+								{
+									"name": "Products",
+									"item": [
+										{
+											"name": "index",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{api}}vendor/products",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"products"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "store",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\": \"test product\",\n    \"description\": \"a test product for testing\",\n    \"price\": \"1000\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{api}}vendor/products",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"products"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "show",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{api}}vendor/products/3",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"products",
+														"3"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "update",
+											"request": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\": \"updated test product again\",\n    \"description\": \"updated a test product for testing\",\n    \"price\": \"10\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{api}}vendor/products/3",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"products",
+														"3"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{api}}vendor/products/14",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"products",
+														"14"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										}
+									]
+								},
+								{
+									"name": "Orders",
+									"item": [
+										{
+											"name": "index",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{api}}vendor/orders",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"orders"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "show",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{api}}vendor/orders/1",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"orders",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "reject",
+											"request": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"status\": \"rejected\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{api}}vendor/orders/1",
+													"host": [
+														"{{api}}vendor"
+													],
+													"path": [
+														"orders",
+														"1"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "1|uB8qw897MJ2GBOD435xtqNpUDNUzj7wfkHnaS9DB",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}
