@@ -12,11 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'first_name',
         'last_name',
@@ -24,23 +19,17 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
+
     protected $hidden = [
+        'remember_token',
         'password',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
-        'created_at' => "datetime:Y-m-d\TH",
-        'updated_at' => "datetime:Y-m-d\TH",
         'password' => 'hashed',
     ];
 }
