@@ -18,13 +18,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        Image::factory(10)->create();
+        // Image::factory(10)->create();
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'image_id' => Image::inRandomOrder()->limit(10)->get(['id'])->first()
+            'image_id' => Image::inRandomOrder()->limit(1)->get(['id'])->first()
         ];
     }
 }
