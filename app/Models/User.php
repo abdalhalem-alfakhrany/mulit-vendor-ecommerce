@@ -32,4 +32,9 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function shopping_carts()
+    {
+        return $this->hasMany(ShoppingCart::class);
+    }
 }

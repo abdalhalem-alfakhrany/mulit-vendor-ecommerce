@@ -13,6 +13,7 @@ class Product extends Model
         'name',
         'description',
         'price',
+        'offer_price',
         'vendor_id',
         'image_id',
     ];
@@ -32,8 +33,8 @@ class Product extends Model
         return $this->hasOne(Image::class);
     }
 
-    public function shopping_lists()
+    public function shopping_carts()
     {
-        return $this->belongsToMany(ShoppingList::class);
+        return $this->belongsToMany(ShoppingCart::class);
     }
 }
