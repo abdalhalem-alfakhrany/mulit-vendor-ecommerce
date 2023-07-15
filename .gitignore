@@ -18,3 +18,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+.BULK_RENAME.txt
+multi_vendor_e_commerce.db
