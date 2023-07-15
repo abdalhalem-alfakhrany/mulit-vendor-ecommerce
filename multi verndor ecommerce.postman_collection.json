@@ -7,330 +7,433 @@
 	},
 	"item": [
 		{
-			"name": "UserApp",
+			"name": "Auth",
 			"item": [
 				{
-					"name": "Api",
-					"item": [
-						{
-							"name": "Auth",
-							"item": [
-								{
-									"name": "login",
-									"protocolProfileBehavior": {
-										"disabledSystemHeaders": {
-											"content-type": true
-										}
-									},
-									"request": {
-										"auth": {
-											"type": "noauth"
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"email\": \"abdalhalem@app.com\",\n    \"password\": \"password\"\n}"
-										},
-										"url": {
-											"raw": "{{api}}auth/login",
-											"host": [
-												"{{api}}auth"
-											],
-											"path": [
-												"login"
-											],
-											"query": [
-												{
-													"key": "email",
-													"value": "",
-													"disabled": true
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "register",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"first_name\": \"abdalhalem\",\n    \"last_name\": \"alfakhrany\",\n    \"email\": \"abdalhalem1@app.com\",\n    \"password\": \"password\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{api}}auth/register",
-											"host": [
-												"{{api}}auth"
-											],
-											"path": [
-												"register"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								}
-							]
+					"name": "login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
 						},
-						{
-							"name": "Vendor",
-							"item": [
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"abdalhalem@app.com\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{api}}auth/login",
+							"host": [
+								"{{api}}auth"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
 								{
-									"name": "Products",
-									"item": [
-										{
-											"name": "index",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"method": "GET",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{api}}vendor/products",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"products"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "store",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\n    \"name\": \"test product\",\n    \"description\": \"a test product for testing\",\n    \"price\": \"1000\"\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{api}}vendor/products",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"products"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "show",
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{api}}vendor/products/3",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"products",
-														"3"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "update",
-											"request": {
-												"method": "PUT",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\n    \"name\": \"updated test product again\",\n    \"description\": \"updated a test product for testing\",\n    \"price\": \"10\"\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{api}}vendor/products/3",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"products",
-														"3"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "delete",
-											"request": {
-												"method": "DELETE",
-												"header": [],
-												"url": {
-													"raw": "{{api}}vendor/products/14",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"products",
-														"14"
-													]
-												}
-											},
-											"response": []
-										}
-									],
-									"event": [
-										{
-											"listen": "prerequest",
-											"script": {
-												"type": "text/javascript",
-												"exec": [
-													""
-												]
-											}
-										},
-										{
-											"listen": "test",
-											"script": {
-												"type": "text/javascript",
-												"exec": [
-													""
-												]
-											}
-										}
-									]
-								},
-								{
-									"name": "Orders",
-									"item": [
-										{
-											"name": "index",
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{api}}vendor/orders",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"orders"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "show",
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{api}}vendor/orders/1",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"orders",
-														"1"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "reject",
-											"request": {
-												"method": "PUT",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\n    \"status\": \"rejected\"\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{api}}vendor/orders/1",
-													"host": [
-														"{{api}}vendor"
-													],
-													"path": [
-														"orders",
-														"1"
-													]
-												}
-											},
-											"response": []
-										}
-									]
+									"key": "email",
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
-					],
-					"auth": {
-						"type": "bearer",
-						"bearer": [
-							{
-								"key": "token",
-								"value": "1|uB8qw897MJ2GBOD435xtqNpUDNUzj7wfkHnaS9DB",
-								"type": "string"
-							}
-						]
 					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"abdalhalem\",\n    \"last_name\": \"alfakhrany\",\n    \"email\": \"abdalhalem1@app.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}auth/register",
+							"host": [
+								"{{api}}auth"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "UserApp",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"filter\": \"search\",\n    \"product_name\": \"product 1\",\n    \"vendor_id\": 3,\n    \"tags_ids\": [\n        1,\n        2\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}user/products",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}user/products/1",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ShoppingCarts",
+					"item": [
+						{
+							"name": "indx",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}user/carts",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}user/carts/8",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"carts",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"cartayah\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}user/carts",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"cart\",\n    \"products_ids\": [\n        1,\n        2,\n        3\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}user/carts/4",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"carts",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api}}user/carts/6",
+									"host": [
+										"{{api}}user"
+									],
+									"path": [
+										"carts",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "3|1b88dwsqrAUdUQybceITx8Z6CNQ5nO9O3UGZCWcN",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "VendorApp",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}vendor/products",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test product\",\n    \"description\": \"a test product for testing\",\n    \"price\": \"1000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}vendor/products",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}vendor/products/3",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"products",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"updated test product again\",\n    \"description\": \"updated a test product for testing\",\n    \"price\": \"10\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}vendor/products/3",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"products",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api}}vendor/products/14",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"products",
+										"14"
+									]
+								}
+							},
+							"response": []
+						}
+					],
 					"event": [
 						{
 							"listen": "prerequest",
@@ -349,6 +452,73 @@
 									""
 								]
 							}
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}vendor/orders",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}vendor/orders/1",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reject",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"rejected\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}vendor/orders/1",
+									"host": [
+										"{{api}}vendor"
+									],
+									"path": [
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
