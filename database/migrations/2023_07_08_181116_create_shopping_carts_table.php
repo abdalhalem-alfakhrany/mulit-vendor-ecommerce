@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopping_lists', function (Blueprint $table) {
+        Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
 
             $table->string('name');
@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_shopping_list', function (Blueprint $table) {
-            $table->foreignId('shopping_list_id')->constrained();
+        Schema::create('product_shopping_cart', function (Blueprint $table) {
+            $table->foreignId('shopping_cart_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('product_id')->constrained();
         });
     }
@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_shopping_list');
-        Schema::dropIfExists('shopping_lists');
+        Schema::dropIfExists('product_shopping_cart');
+        Schema::dropIfExists('shopping_carts');
     }
 };
