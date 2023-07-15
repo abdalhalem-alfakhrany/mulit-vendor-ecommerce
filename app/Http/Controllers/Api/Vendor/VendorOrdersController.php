@@ -6,10 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Vendor\UpdateOrderRequest;
 use App\Models\Order;
 use App\Models\Vendor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class OrdersController extends Controller
+class VendorOrdersController extends Controller
 {
     public function __construct()
     {

@@ -7,10 +7,9 @@ use App\Http\Requests\Vendor\StoreProductRequest;
 use App\Http\Requests\Vendor\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\Vendor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProductsController extends Controller
+class VendorProductsController extends Controller
 {
     public function __construct()
     {
