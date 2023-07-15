@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price');
+            $table->decimal('offer_price')->nullable();
 
             $table->foreignId('vendor_id')->constrained();
             $table->foreignId('image_id')->nullable()->constrained();
