@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShoppingList extends Model
+class ShoppingCart extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'user_id'];
 
     public function user()
     {
@@ -19,7 +19,7 @@ class ShoppingList extends Model
     {
         return $this->hasOne(Order::class);
     }
-   
+
     public function products()
     {
         return $this->belongsToMany(Product::class);
